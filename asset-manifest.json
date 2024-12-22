@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PECResolve/static/css/main.469a2b85.css",
+    "main.js": "/PECResolve/static/js/main.df0adb2f.js",
+    "static/media/logo.jpg": "/PECResolve/static/media/logo.32c2a7b7e120138319ca.jpg",
+    "static/media/Anti-Ragging.webp": "/PECResolve/static/media/Anti-Ragging.5749e50ad4eea156eefd.webp",
+    "index.html": "/PECResolve/index.html",
+    "main.469a2b85.css.map": "/PECResolve/static/css/main.469a2b85.css.map",
+    "main.df0adb2f.js.map": "/PECResolve/static/js/main.df0adb2f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.469a2b85.css",
+    "static/js/main.df0adb2f.js"
+  ]
+}
