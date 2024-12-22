@@ -6,18 +6,28 @@ import { useNavigate } from "react-router-dom";
 
 const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , userRole , setUserRole }) => {
   const navigate = useNavigate();
-
+  const [pass,setPass] =useState({
+    password:""
+    ,confirmpass:""
+  })
   const toggleForm = () => setIsAuthenticated(!isAuthenticated);
   const toggleRole = (role) => setUserRole(role);
 
   const handleUsernameChange = (e) => {
     const {name, value } = e.target;
-    setuserName((prevName) => ({
-      ...prevName,
+    setuserName((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
+  const handlePasswordChange = (e)=>{
+    const{name,value}=e.target;
+    setPass((prev)=>({
+      ...prev ,
+      [name]:value
+    }));
+  };
   const handleLoginSuccess = () => {
     toast.success(`Welcome Back ${name.firstName}`);
     toast.success('Logging you in...')
@@ -26,8 +36,13 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
   };
 
   const handleSignupSuccess = () => {
-    toast.success("Account created successfully! Please log in.");
-    setIsAuthenticated(true);
+    if(pass.password!==pass.confirmpass){
+      toast.error("Passwords do not match! Try again")
+    }
+    else{
+      toast.success("Account created successfully! Please log in.");
+      setIsAuthenticated(true);
+    }
   };
 
   return (
@@ -98,6 +113,9 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
             <input
               type="password"
               required
+              value={pass.password}
+              onChange={handlePasswordChange}
+              name="password"
               placeholder="Password"
               className="w-full bg-gray-700 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-greenLight"
             />
@@ -112,6 +130,9 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
                 <input
                   type="password"
                   required
+                  value={pass.confirmpass}
+                  onChange={handlePasswordChange}
+                  name="confirmpass"
                   placeholder="Confirm Password"
                   className="w-full bg-gray-700 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-greenLight"
                 />
