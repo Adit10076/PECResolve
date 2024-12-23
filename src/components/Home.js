@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import AntiRagging from "./AntiRagging";
+import FAQ from './FAQ'
 
 const Home = ({isAuthenticated,setIsAuthenticated ,name , setuserName , complaint , setComplaint}) => {
   return (
@@ -18,6 +19,10 @@ const Home = ({isAuthenticated,setIsAuthenticated ,name , setuserName , complain
       {/* Anti Ragging  */}
 
       <AntiRagging/>
+
+      {/* FAQ  */}
+
+      <FAQ/>
 
       {/* Footer */}
       <Footer />
