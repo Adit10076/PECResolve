@@ -1,12 +1,14 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+
 const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
-   
+
     const [formData, setformData] = useState({
         title: "",
         description: "",
+        complaintType: "General"
     })
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,14 +19,31 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
     };
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (formData.title && formData.description) {
-            addComplaint({ ...formData, id: Date.now() })
-            console.log(complaint)
-            toast.success("Compalint Submitted!");
-            
-            
+            //backend interaction
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/createComplaint`, {
+                    method: "POST", 
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData), 
+                  });
+                if (response.ok) {
+                    const data = await response.json();
+                    addComplaint({ ...formData, id: Date.now() })
+                    console.log(data)
+                    toast.success("Compalint Submitted!");
+                    navigate("/");  
+                } else{
+                    throw new Error("Failed to submit complaint");
+                }
+            } catch (error) {
+                console.error("Error submitting complaint:", error);
+                alert("Failed to submit complaint. Please try again.");
+            }
         }
         else {
             toast.error("Please fill all the forms")
@@ -95,7 +114,7 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
                     </button>
                 </form>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

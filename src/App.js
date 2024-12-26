@@ -24,6 +24,8 @@ const App = () => {
     }
   }, []);
 
+  //get all complaints from database
+
   const [items, setItems] = useState([
     { id: 1, 
       title: "Lost Phone", 
@@ -39,10 +41,28 @@ const App = () => {
     setItems([...items, newItem]);
   };
 
-  const [complaint, setComplaint] = useState([
-      { id: 1, title: "Complaint about server downtime", description: "The server was down for hours yesterday." },
-      { id: 2, title: "Complaint about faculty behavior", description: "The professor was rude during the class." },
+  const [complaint, setComplaint] = useState([ 
+      // { id: 1, title: "Complaint about server downtime", description: "The server was down for hours yesterday." },
+      // { id: 2, title: "Complaint about faculty behavior", description: "The professor was rude during the class." },
   ]);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/complaints`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch complaints");
+        }
+        const data = await response.json();
+        console.log(data.data);
+        setComplaint(data.data);
+      } catch (error) {
+        console.error("Error fetching complaints:", error);
+      }
+    };
+
+    fetchComplaints();
+  }, []);
 
   function addComplaint(newComplaint){
     setComplaint([...complaint,newComplaint]);
@@ -56,7 +76,7 @@ const App = () => {
         complaint={complaint} setComplaint={setComplaint}/>}/>
         {/* Lost n found route */}
         <Route path='/lostnfound' element={<LostAndFound items={items} setItems={setItems} addItem={addItem}/>}/>
-        {/* Login/Signup Page If not logged in */}
+        {/* Login/Signup Page*/}
         <Route path="/login" element={<LoginSignup  isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
         userRole={userRole} setUserRole={setUserRole}/>} />
         {/* To submit a complaint */}
