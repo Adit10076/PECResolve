@@ -11,11 +11,15 @@ import ContactUs from "./components/ContactUs.js";
 import AboutUs from "./components/AboutUs.js";
 import AntiRaggingComplaint from "./components/AntiRaggingComplaint.js";
 import JoinCampaign from "./components/JoinCampaign.js";
+import ViewGrievances from "./components/ViewGrievances.js";
 
 const App = () => {
+  const [userRole, setUserRole] = useState("Student");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [name, setuserName] = useState({ firstName: '' });
-
+  const [name, setuserName] = useState({
+    firstName: "",
+    [userRole === "Student" ? "studentId" : "instructorId"]: "" 
+  });
   // user authentication status
   useEffect(() => {
     const loggedIn = localStorage.getItem("isAuthenticated");
@@ -67,7 +71,6 @@ const App = () => {
   function addComplaint(newComplaint){
     setComplaint([...complaint,newComplaint]);
   }
-  const [userRole, setUserRole] = useState("student");
   return (
     <Router>
       <Routes>
@@ -88,6 +91,7 @@ const App = () => {
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/complaint' element={<AntiRaggingComplaint/>}/>
         <Route path='/join' element={<JoinCampaign/>}/>
+        <Route path ='/view' element={<ViewGrievances/>}/>
       </Routes>
     </Router>
   );

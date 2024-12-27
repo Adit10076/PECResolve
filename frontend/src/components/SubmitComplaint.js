@@ -99,8 +99,8 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
                             className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                         >
                             <option value="General">General</option>
-                            <option value="Urgent">Urgent</option>
-                            <option value="Service">Service</option>
+                            <option value="Urgent">Hostel</option>
+                            <option value="Service">Campus</option>
                             <option value="Product">Product</option>
                         </select>
                     </div>

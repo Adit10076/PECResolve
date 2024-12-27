@@ -12,5 +12,4 @@ const dbConnect = () => {
         console.log("database connection unsuccessfull");
     })
 };
-
 module.exports=dbConnect;

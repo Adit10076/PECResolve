@@ -1,47 +1,116 @@
-import React, { useState } from "react";
-import { FaUser, FaLock, FaSchool, FaChalkboardTeacher } from "react-icons/fa"; 
+import React, { useState, useEffect } from "react";
+import { FaUser, FaLock, FaSchool, FaChalkboardTeacher } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , userRole , setUserRole }) => {
+const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, userRole, setUserRole }) => {
   const navigate = useNavigate();
-  const [pass,setPass] =useState({
-    password:""
-    ,confirmpass:""
-  })
+  const [pass, setPass] = useState({
+    password: "",
+    confirmpass: ""
+  });
+
+  useEffect(() => {
+    if (userRole === "Student") {
+      setuserName((prev) => ({
+        ...prev,
+        studentId: "", 
+      }));
+    } else if (userRole === "Instructor") {
+      setuserName((prev) => ({
+        ...prev,
+        instructorId: "",
+      }));
+    }
+  }, [userRole, setuserName]);
+
   const toggleForm = () => setIsAuthenticated(!isAuthenticated);
-  const toggleRole = (role) => setUserRole(role);
+  const toggleRole = (role) => setUserRole(role); 
 
   const handleUsernameChange = (e) => {
-    const {name, value } = e.target;
+    const { name, value } = e.target;
     setuserName((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handlePasswordChange = (e)=>{
-    const{name,value}=e.target;
-    setPass((prev)=>({
-      ...prev ,
-      [name]:value
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target;
+    setPass((prev) => ({
+      ...prev,
+      [name]: value
     }));
+    //navigate
+    //setisauthen true
   };
-  const handleLoginSuccess = () => {
-    toast.success(`Welcome Back ${name.firstName}`);
-    toast.success('Logging you in...')
-    setTimeout(()=>{navigate("/")},5000)
-    setIsAuthenticated(true);
+  const handleLoginSuccess = async() => {
+    try{
+      const requestBody = {
+        userRole,
+        firstName: name.firstName,
+        password: pass.password,
+      };
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/login`,requestBody);
+      if(response.data.success){
+        toast.success(response.data.message);
+        setIsAuthenticated(true);
+        setTimeout(()=>{
+          navigate("/")
+        },2000)
+      }
+      else {
+        toast.error(response.data.message || "Something went wrong. Try again.");
+      }
+
+    }
+    catch(e){
+      console.log(e);
+      toast.error("An Error Occured");
+    }
   };
 
-  const handleSignupSuccess = () => {
-    if(pass.password!==pass.confirmpass){
-      toast.error("Passwords do not match! Try again")
-    }
-    else{
-      toast.success("Account created successfully! Please log in.");
-      setIsAuthenticated(true);
+  const handleSignupSuccess = async () => {
+    if (pass.password !== pass.confirmpass) {
+      toast.error("Passwords do not match! Try again");
+    } else {
+      try {
+        
+        const requestBody = {
+          userRole,
+          firstName: name.firstName,
+          password: pass.password,
+          confirmpass:pass.confirmpass,
+          ...(userRole === "Student" && { studentId: name.studentId }),
+          ...(userRole === "Instructor" && { instructorId: name.instructorId }),
+        };
+
+        console.log("Sending Request Body:", requestBody);
+
+      
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/v1/signup`,
+          requestBody,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+  
+        if (response.data.success) {
+          toast.success("Account created successfully! Please log in.");
+          setIsAuthenticated(false); 
+        } else {
+          toast.error(response.data.message || "Something went wrong. Try again.");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Error signing up! Please try again.");
+      }
     }
   };
 
@@ -64,18 +133,14 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
         {/* Role Selector */}
         <div className="flex justify-around mb-6">
           <button
-            onClick={() => toggleRole("student")}
-            className={`text-white px-6 py-2 rounded-md transition-all duration-300 transform ${
-              userRole === "student" ? "bg-greenLight scale-105" : "bg-gray-700"
-            }`}
+            onClick={() => toggleRole("Student")}
+            className={`text-white px-6 py-2 rounded-md transition-all duration-300 transform ${userRole === "Student" ? "bg-greenLight scale-105" : "bg-gray-700"}`}
           >
             Student
           </button>
           <button
-            onClick={() => toggleRole("instructor")}
-            className={`text-white px-6 py-2 rounded-md transition-all duration-300 transform ${
-              userRole === "instructor" ? "bg-greenLight scale-105" : "bg-gray-700"
-            }`}
+            onClick={() => toggleRole("Instructor")}
+            className={`text-white px-6 py-2 rounded-md transition-all duration-300 transform ${userRole === "Instructor" ? "bg-greenLight scale-105" : "bg-gray-700"}`}
           >
             Instructor
           </button>
@@ -101,7 +166,7 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
               required
               name="firstName"
               value={name.firstName}
-              onChange={handleUsernameChange} 
+              onChange={handleUsernameChange}
               placeholder="Username"
               className="w-full bg-gray-700 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-greenLight"
             />
@@ -139,24 +204,30 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName , 
               </div>
 
               {/* Role-based Fields */}
-              {userRole === "student" && (
+              {userRole === "Student" && (
                 <div className="flex items-center space-x-4">
                   <FaSchool className="text-white text-2xl" />
                   <input
                     type="text"
                     required
+                    name="studentId"
+                    value={name.studentId || ""}
+                    onChange={handleUsernameChange}
                     placeholder="Student ID"
                     className="w-full bg-gray-700 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-greenLight"
                   />
                 </div>
               )}
 
-              {userRole === "instructor" && (
+              {userRole === "Instructor" && (
                 <div className="flex items-center space-x-4">
                   <FaChalkboardTeacher className="text-white text-2xl" />
                   <input
                     type="text"
                     required
+                    name="instructorId"
+                    value={name.instructorId || ""}
+                    onChange={handleUsernameChange}
                     placeholder="Instructor ID"
                     className="w-full bg-gray-700 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-greenLight"
                   />

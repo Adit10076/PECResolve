@@ -33,11 +33,11 @@ const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole}) =>
               <div className="mt-4 flex justify-center space-x-6">
                 <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48">
                   <FaClipboardList className="text-3xl mb-4" />
-                  <p>View Grievances</p>
+                  <button onClick={()=>navigate("/view")}>View Grievances</button>
                 </div>
                 <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48">
                   <FaSchool className="text-3xl mb-4" />
-                  <p>Submit New Grievance</p>
+                  <button onClick={()=>navigate("/submitcomplaint")}>Submit New Grievance</button>
                 </div>
               </div>
             </div>
