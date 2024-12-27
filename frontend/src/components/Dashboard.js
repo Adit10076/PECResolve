@@ -5,7 +5,7 @@ import { FaUser, FaSignOutAlt, FaClipboardList, FaChalkboardTeacher, FaSchool } 
 import { Link } from "react-router-dom"; 
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole}) => {
+const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole,name,setUsername}) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     setIsAuthenticated(false);
@@ -21,13 +21,13 @@ const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole}) =>
         <div className="flex justify-center items-center space-x-4">
           <FaUser className="text-3xl" />
           <h3 className="text-2xl">
-            Hello, {userRole === "student" ? "Student" : "Instructor"}!
+            Hello, {name.firstName} !
           </h3>
         </div>
 
         {/*Content */}
         <div className="mt-6">
-          {userRole === "student" ? (
+          {userRole === "Student" ? (
             <div>
               <p className="text-lg">As a student, you can manage your grievances here.</p>
               <div className="mt-4 flex justify-center space-x-6">

@@ -1,8 +1,9 @@
 // src/components/AddItemForm.js
+import axios from "axios";
 import React, { useState } from "react";
 import { ToastContainer,toast } from "react-toastify";
 
-const AddItemForm = ({ items, setItems, addItem }) => { //for the list
+const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
 
     //for the form 
     const [formData , setformData] = useState({
@@ -16,12 +17,33 @@ const AddItemForm = ({ items, setItems, addItem }) => { //for the list
 
     };
 
-    const handleSubmit = (e) => {
+    const requiredBody = {
+        title:formData.title,
+        description:formData.description,
+        type:formData.type
+    }
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        if (formData.title && formData.description) {
-            addItem({ ...formData, id: Date.now() });
-            toast.success("Added Item Successfully");
+        if (!formData.title || !formData.description) {
+            toast.error("Please fill the form")
         }
+        else{
+            try{
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/report`,requiredBody);
+                if(response.data.success){
+                    toast.success("item added successfully");
+                    const item={
+                        title: response.data.title,
+                        description:response.data.description,
+                        type:response.data.type
+                    }
+                    fetchItems();
+                    
+                }
+            } catch(error){
+                toast.error(error.message)
+            }
+        } 
     };
 
     return (

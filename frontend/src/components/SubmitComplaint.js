@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 
-const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
+const SubmitComplaint = ({ complaint, setComplaint, addComplaint , isAuthenticated}) => {
 
     const [formData, setformData] = useState({
         title: "",
@@ -51,7 +51,9 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
     };
 
     return (
-        <div className="bg-gray-100 min-h-screen flex justify-center items-center py-12">
+        <div>
+            {isAuthenticated?<>
+                <div className="bg-gray-100 min-h-screen flex justify-center items-center py-12">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
                     Submit Your Complaint
@@ -115,6 +117,10 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint }) => {
                 </form>
             </div>
             <ToastContainer />
+        </div>
+            </>:
+            navigate("/login")
+            }
         </div>
     );
 };

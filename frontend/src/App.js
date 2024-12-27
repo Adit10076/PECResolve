@@ -31,14 +31,6 @@ const App = () => {
   //get all complaints from database
 
   const [items, setItems] = useState([
-    { id: 1, 
-      title: "Lost Phone", 
-      description: "I lost my phone in the library.", 
-      type: "lost" },
-    { id: 2, 
-      title: "Found Wallet", 
-      description: "A wallet was found near the cafeteria.", 
-      type: "found" }
   ]);
 
   const addItem = (newItem) => {
@@ -83,9 +75,10 @@ const App = () => {
         <Route path="/login" element={<LoginSignup  isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
         userRole={userRole} setUserRole={setUserRole}/>} />
         {/* To submit a complaint */}
-        <Route path="/submitcomplaint" element={<SubmitComplaint complaint={complaint} setComplaint={setComplaint} addComplaint={addComplaint}/>} />
+        <Route path="/submitcomplaint" element={<SubmitComplaint isAuthenticated={isAuthenticated} complaint={complaint} setComplaint={setComplaint} addComplaint={addComplaint}/>} />
         {/* Dashboard  */}
-        <Route path="/dashboard" element={<Dashboard isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} userRole={userRole}
+        <Route path="/dashboard" element={<Dashboard isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} 
+        name={name} setuserName={setuserName} userRole={userRole}
         setUserRole={setUserRole}/>} />
         <Route path="/contact" element={<ContactUs/>}/>
         <Route path='/about' element={<AboutUs/>}/>
