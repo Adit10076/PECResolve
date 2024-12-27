@@ -22,12 +22,12 @@ const dbConnect = require("./config/database");
 app.use('/api/v1',allRoutes);
 
 app.listen(PORT,()=>{
-    console.log("server started successfully");
+    console.log(`server started successfully at ${PORT}`);
 })
 //connect to the database
 const connectDb = require("./config/database.js")
 connectDb();
 
 app.get("/",(req,res)=>{
-    res.send(`<h1>This is homepage</h1>`)
+    res.send(`<h1>This is homepbiuhu</h1>`)
 })
