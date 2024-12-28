@@ -24,12 +24,11 @@ const Footer = () => {
 
         {/* Links Section */}
         <div className="flex justify-center gap-10 mt-4">
-          <a
-            href="#"
-            className="text-white hover:text-lightBlue transition-all duration-300 transform hover:scale-110"
+          <Link
+            to="/privacy"
           >
-            Privacy Policy
-          </a>
+            <span  className="text-white hover:text-lightBlue transition-all duration-300 transform hover:scale-110">Privacy Policy</span>
+          </Link>
           <a
             href="#"
             className="text-white hover:text-lightBlue transition-all duration-300 transform hover:scale-110"

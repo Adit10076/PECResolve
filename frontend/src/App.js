@@ -12,6 +12,7 @@ import AboutUs from "./components/AboutUs.js";
 import AntiRaggingComplaint from "./components/AntiRaggingComplaint.js";
 import JoinCampaign from "./components/JoinCampaign.js";
 import ViewGrievances from "./components/ViewGrievances.js";
+import PrivacyPolicy from "./components/PrivacyPolicy.js";
 
 const App = () => {
   const [userRole, setUserRole] = useState("Student");
@@ -85,6 +86,7 @@ const App = () => {
         <Route path='/complaint' element={<AntiRaggingComplaint/>}/>
         <Route path='/join' element={<JoinCampaign/>}/>
         <Route path ='/view' element={<ViewGrievances/>}/>
+        <Route path='/privacy' element ={<PrivacyPolicy/>}/>
       </Routes>
     </Router>
   );
