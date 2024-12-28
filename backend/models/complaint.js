@@ -12,6 +12,16 @@ const complaintSchema = new mongoose.Schema({
     complaintType:{
         type:String,
         required:true,
+    },
+    firstName:{
+        type:String
+    },
+    instructorType:{
+        type:String,
+        enum:["General","Hostel","Campus","Urgent"]
+    },
+    deadlineDate:{
+        type:Date,
     }
 });
 module.exports = mongoose.model("Complaint",complaintSchema);

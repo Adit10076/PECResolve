@@ -13,6 +13,7 @@ exports.signup = async (req, res) => {
                 message: "Passwords do not match",
             });
         }
+        
 
         if (userRole === "Student" && !studentId) {
             return res.status(400).json({
@@ -92,7 +93,9 @@ exports.login = async(req,res)=>{
                 success:true,
                 token,
                 user,
-                message:"User logged in successfully"
+                message:"User logged in successfully",
+                instructorId:user.instructorId,
+
             })
         }
         else{

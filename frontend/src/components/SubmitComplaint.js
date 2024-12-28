@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const SubmitComplaint = ({ complaint, setComplaint, addComplaint, isAuthenticated }) => {
+const SubmitComplaint = ({ userRole, name, setUserName, complaint, setComplaint, addComplaint, isAuthenticated }) => {
     const [formData, setformData] = useState({
         title: "",
         description: "",
-        complaintType: "General"
+        complaintType: "General",
+        firstName: name.firstName,
+        instructorType: "General"
     });
 
     const handleChange = (e) => {
@@ -19,17 +21,17 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint, isAuthenticate
 
     const navigate = useNavigate();
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.title && formData.description) {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/createComplaint`, {
                     method: "POST",
                     headers: {
-                      "Content-Type": "application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify(formData),
-                  });
+                });
                 if (response.ok) {
                     const data = await response.json();
                     addComplaint({ ...formData, id: Date.now() });
@@ -97,6 +99,25 @@ const SubmitComplaint = ({ complaint, setComplaint, addComplaint, isAuthenticate
                                         <option value="Urgent">Urgent</option>
                                         <option value="Campus">Campus</option>
                                         <option value="Hostel">Hostel</option>
+                                    </select>
+                                </div>
+                                {/* Instructor Type Selector */}
+                                <div className="flex flex-col mt-4">
+                                    <label htmlFor="instructorType" className="text-green-300 mb-2">
+                                        Instructor Type (same as complaint Type)
+                                    </label>
+                                    <select
+                                        id="instructorType"
+                                        name="instructorType"
+                                        value={formData.instructorType}
+                                        onChange={handleChange}
+                                        className="border border-green-600 bg-gray-800 text-white rounded-md p-2 focus:outline-none focus:ring-4 focus:ring-green-500"
+                                    >
+                                        <option value="">Select an instructor type</option>
+                                        <option value="General">General Instructor</option>
+                                        <option value="Urgent">Urgent Instructor</option>
+                                        <option value="Campus">Campus Instructor</option>
+                                        <option value="Hostel">Hostel Instructor</option>
                                     </select>
                                 </div>
                                 <button

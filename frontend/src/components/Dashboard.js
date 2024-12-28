@@ -4,10 +4,12 @@ import React, { use, useState } from "react";
 import { FaUser, FaSignOutAlt, FaClipboardList, FaChalkboardTeacher, FaSchool } from "react-icons/fa"; 
 import { Link } from "react-router-dom"; 
 import { useNavigate } from "react-router-dom";
+import InstructorDashboard from "../components/InstructorDashboard"
 
-const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole,name,setUsername}) => {
+const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole,name,setUsername,complaint}) => {
   const navigate = useNavigate();
   const handleLogout = () => {
+    localStorage.removeItem("authToken")
     setIsAuthenticated(false);
     navigate("/");
   };
@@ -42,19 +44,7 @@ const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole,name
               </div>
             </div>
           ) : (
-            <div>
-              <p className="text-lg">As an instructor, you can manage complaints raised by students.</p>
-              <div className="mt-4 flex justify-center space-x-6">
-                <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48">
-                  <FaClipboardList className="text-3xl mb-4" />
-                  <p>View All Complaints</p>
-                </div>
-                <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48">
-                  <FaChalkboardTeacher className="text-3xl mb-4" />
-                  <p>Resolve Complaints</p>
-                </div>
-              </div>
-            </div>
+            <InstructorDashboard complaint={complaint}/>
           )}
         </div>
 

@@ -10,7 +10,8 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated , name , setuserName , ite
   function handleLogout(){
     
     toast.warning("Logging you out...")
-    setTimeout(()=>{navigate('/login')},5000)
+    localStorage.removeItem("authToken")
+    setTimeout(()=>{navigate('/login')},2000)
   }
   return (
     <div className="sticky top-0 z-20 bg-white shadow-md">

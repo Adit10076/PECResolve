@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint }) => {
+const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,userRole}) => {
   return (
     <div>
       <div
@@ -29,11 +29,15 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint }) 
                 Go To Dashboard
               </button>
             </Link>
-            <Link to="/submitcomplaint">
+            {
+              userRole==="Student"?<>
+                <Link to="/submitcomplaint">
               <button className="bg-lightBlue text-white rounded-lg py-3 px-8 hover:bg-blue-600 transition-all duration-300 text-lg font-semibold transform hover:scale-105">
                 Submit a Complaint
               </button>
             </Link>
+              </>:<button></button>
+            }
           </div>
           <div className="mt-10 text-white opacity-70">
             <p className="text-lg text-animation">

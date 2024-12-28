@@ -13,6 +13,7 @@ import AntiRaggingComplaint from "./components/AntiRaggingComplaint.js";
 import JoinCampaign from "./components/JoinCampaign.js";
 import ViewGrievances from "./components/ViewGrievances.js";
 import PrivacyPolicy from "./components/PrivacyPolicy.js";
+import ResolveComplaint from "./components/ResolveComplaint.js";
 
 const App = () => {
   const [userRole, setUserRole] = useState("Student");
@@ -23,7 +24,7 @@ const App = () => {
   });
   // user authentication status
   useEffect(() => {
-    const loggedIn = localStorage.getItem("isAuthenticated");
+    const loggedIn = localStorage.getItem("authToken");
     if (loggedIn) {
       setIsAuthenticated(true);
     }
@@ -69,23 +70,24 @@ const App = () => {
       <Routes>
         {/* Home Page Default route */}
         <Route path="/" element={<Home isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
-        complaint={complaint} setComplaint={setComplaint}/>}/>
+        complaint={complaint} setComplaint={setComplaint} userRole={userRole}/>}/>
         {/* Lost n found route */}
         <Route path='/lostnfound' element={<LostAndFound items={items} setItems={setItems} addItem={addItem}/>}/>
         {/* Login/Signup Page*/}
         <Route path="/login" element={<LoginSignup  isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
         userRole={userRole} setUserRole={setUserRole}/>} />
         {/* To submit a complaint */}
-        <Route path="/submitcomplaint" element={<SubmitComplaint isAuthenticated={isAuthenticated} complaint={complaint} setComplaint={setComplaint} addComplaint={addComplaint}/>} />
+        <Route path="/submitcomplaint" element={<SubmitComplaint userRole={userRole} name={name} setuserName={setuserName} isAuthenticated={isAuthenticated} complaint={complaint} setComplaint={setComplaint} addComplaint={addComplaint}/>} />
         {/* Dashboard  */}
         <Route path="/dashboard" element={<Dashboard isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} 
         name={name} setuserName={setuserName} userRole={userRole}
-        setUserRole={setUserRole}/>} />
+        setUserRole={setUserRole} complaint={complaint}/>} />
         <Route path="/contact" element={<ContactUs/>}/>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/complaint' element={<AntiRaggingComplaint/>}/>
         <Route path='/join' element={<JoinCampaign/>}/>
-        <Route path ='/view' element={<ViewGrievances/>}/>
+        <Route path ='/view' element={<ViewGrievances name={name} setuserName={setuserName} complaint={complaint} setComplaint={setComplaint} />}/>
+        <Route path="/resolve-complaint/:complaintId" element={<ResolveComplaint />} />
         <Route path='/privacy' element ={<PrivacyPolicy/>}/>
       </Routes>
     </Router>

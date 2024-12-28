@@ -26,8 +26,7 @@ const authSchema = new mongoose.Schema({
     instructorId:{
         type:String,
         default:null   
-    }
-    
+    },
     
 });
 

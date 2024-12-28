@@ -12,6 +12,8 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, u
     confirmpass: ""
   });
 
+
+  
   useEffect(() => {
     if (userRole === "Student") {
       setuserName((prev) => ({
@@ -55,7 +57,13 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, u
       };
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/login`,requestBody);
       if(response.data.success){
+        localStorage.setItem("authToken", response.data.token);
         toast.success(response.data.message);
+
+        if (userRole === "Instructor") {
+          // Save the instructorId to state or localStorage
+          localStorage.setItem("instructorId", response.data.instructorId);
+        }
         setIsAuthenticated(true);
         setTimeout(()=>{
           navigate("/")
@@ -77,7 +85,6 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, u
       toast.error("Passwords do not match! Try again");
     } else {
       try {
-        
         const requestBody = {
           userRole,
           firstName: name.firstName,
