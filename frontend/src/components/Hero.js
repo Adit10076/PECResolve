@@ -2,14 +2,14 @@
 import { Link } from 'react-router-dom'
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 
-const Hero = ({ isAuthenticated, setIsAuthenticated ,complaint , setComplaint}) => {
+const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint }) => {
   return (
     <div>
       <div
         className="relative bg-cover bg-center h-screen flex lg:flex-row flex-col items-center px-6 md:px-12 bg-gradient-to-r from-gray-800 via-black to-gray-900 overflow-hidden"
-        style={{ backgroundAttachment: "fixed" }} 
+        style={{ backgroundAttachment: "fixed" }}
       >
         {/* Left Side*/}
         <div className="flex flex-col justify-center items-start text-left text-white space-y-8 w-full md:w-2/3 lg:w-3/5 z-10">
@@ -44,27 +44,54 @@ const Hero = ({ isAuthenticated, setIsAuthenticated ,complaint , setComplaint}) 
 
         {/* Right Side */}
         <div className="w-full md:w-1/3 lg:w-2/5 mt-10 md:mt-0 z-10 lg:block">
-          <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg h-full transform hover:scale-105 transition-all duration-500">
-            <h2 className="text-3xl font-semibold text-center mb-6">Recent Complaints</h2>
+          <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black bg-opacity-90 text-white p-8 rounded-lg shadow-2xl h-full transform hover:scale-105 transition-all duration-500 ease-in-out">
+            <h2 className="text-4xl font-bold text-center mb-6 text-green-300 tracking-wider">
+              Recent Complaints
+            </h2>
 
-            {/* Check if there are any complaints*/}
-            {complaint.length === 0 ? (
-              <p className="text-lg text-center font-semibold text-gray-400">No complaints yet.</p>
-            ) : (
-              <div className="space-y-4">
-                {complaint.map((comp) => (
-                  <div
-                    key={comp.id}
-                    className="bg-gray-700 p-4 rounded-lg shadow-md hover:bg-gray-600 transition-all"
-                  >
-                    <h3 className="text-2xl font-semibold">{comp.title}</h3>
-                    <p className="mt-2 text-base">{comp.description}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="space-y-6 max-h-[400px] overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+              {complaint.length === 0 ? (
+                <p className="text-lg text-center font-semibold text-gray-400">
+                  No complaints yet.
+                </p>
+              ) : (
+                complaint.map((comp) => {
+                  const complaintTypeColors = {
+                    General: "border-green-400 bg-green-900/50",
+                    Urgent: "border-red-500 bg-red-900/50",
+                    Hostel: "border-blue-400 bg-blue-900/50",
+                    Campus: "border-yellow-500 bg-yellow-900/50",
+                  };
+
+                  const complaintClass =
+                    complaintTypeColors[comp.complaintType] || "border-gray-500 bg-gray-700/50";
+
+                  return (
+                    <div
+                      key={comp.id}
+                      className={`p-4 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl border-l-4 ${complaintClass}`}
+                    >
+                      <h3 className="text-2xl font-semibold mb-2 text-green-200">
+                        {comp.title}
+                      </h3>
+                      <p className="text-base text-gray-300">{comp.description}</p>
+                      <p
+                        className={`mt-2 text-sm font-bold ${comp.complaintType === "Urgent"
+                            ? "text-red-400"
+                            : "text-green-300"
+                          }`}
+                      >
+                        {comp.complaintType}
+                      </p>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
         </div>
+
+
       </div>
       <ToastContainer />
     </div>
