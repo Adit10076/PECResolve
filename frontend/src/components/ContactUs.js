@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { FaUser, FaEnvelope, FaRegEdit, FaPaperPlane } from "react-icons/fa"; // Icons
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const ContactUs = () => {
     subject: "",
     message: "",
   });
-
+  const navigate = useNavigate()
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +22,9 @@ const ContactUs = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const { name, email, subject, message } = formData;
-
     // Validation
     if (name && email && subject && message) {
       toast.success("Message sent successfully!");
@@ -34,6 +34,28 @@ const ContactUs = () => {
         subject: "",
         message: "",
       });
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data)
+          toast.success("Message sent successfully");
+          setTimeout(()=>{
+            navigate("/")
+          },3000)
+        } else {
+          throw new Error("Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error submitting complaint:", error);
+        alert("Failed to submit complaint. Please try again.");
+      }
     } else {
       toast.error("Please fill in all the fields.");
     }
@@ -42,7 +64,7 @@ const ContactUs = () => {
   return (
     <div className="bg-gradient-to-r from-gray-900 via-black to-gray-800 min-h-screen flex justify-center items-center py-12">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg animate-slide-in">
-        <ToastContainer /> 
+        <ToastContainer />
         <h2 className="text-3xl font-semibold text-center text-white mb-6">
           Contact Us
         </h2>
