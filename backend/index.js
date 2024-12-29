@@ -12,18 +12,12 @@ app.use(cors({
 }));
 //add middleware
 app.use(express.json())
-const PORT=process.env.PORT
-
 //import routes
 const allRoutes = require("./routes/route.js");
 const dbConnect = require("./config/database");
 
 //mount the routes
 app.use('/api/v1',allRoutes);
-
-app.listen(PORT,()=>{
-    console.log(`server started successfully at ${PORT}`);
-})
 //connect to the database
 const connectDb = require("./config/database.js")
 connectDb();
