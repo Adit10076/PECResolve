@@ -23,5 +23,5 @@ const connectDb = require("./config/database.js")
 connectDb();
 
 app.get("/",(req,res)=>{
-    res.json("This is homepage")
+    res.json({message:"hello"})
 })
