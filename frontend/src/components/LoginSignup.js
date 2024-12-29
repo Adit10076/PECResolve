@@ -24,7 +24,7 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, u
       setuserName((prev) => ({
         ...prev,
         instructorId: "",
-      }));
+      }))
     }
   }, [userRole, setuserName]);
 
@@ -57,7 +57,9 @@ const LoginSignup = ({ isAuthenticated, setIsAuthenticated, name, setuserName, u
       };
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/login`,requestBody);
       if(response.data.success){
+        console.log(response.data)
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("user",JSON.stringify(response.data.user)); //local storage stores as object
         toast.success(response.data.message);
 
         if (userRole === "Instructor") {

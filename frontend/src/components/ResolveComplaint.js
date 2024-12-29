@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {toast,ToastContainer} from "react-toastify"
@@ -8,6 +8,7 @@ const ResolveComplaint = () => {
     const [complaint, setComplaint] = useState(null);
     const [fine, setFine] = useState(0);
     const [newDeadline, setNewDeadline] = useState("");
+    // const [isFinePaid , setIsFinePaid]=useState(false);
 
     // Effect to handle fine calculation and deadline notifications
     const removeSet = ()=>{
@@ -44,6 +45,7 @@ const ResolveComplaint = () => {
             }
         };
         fetchComplaint();
+        removeSet();
     }, [complaintId]);
 
     // Handle the new deadline input change
@@ -72,7 +74,9 @@ const ResolveComplaint = () => {
     // Handle complaint resolution
     const resolveComplaint = async () => {
         try {
-            alert("Complaint resolved successfully!");
+            //pay the fine
+            //notify the user
+            toast.success("Complaint resolved successfully!");
             setFine(0); // Reset fine when complaint is resolved
             //delete complaint
             try{

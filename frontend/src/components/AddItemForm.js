@@ -38,7 +38,8 @@ const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
                         type:response.data.type
                     }
                     fetchItems();
-                    
+                    formData.title="";
+                    formData.description="";
                 }
             } catch(error){
                 toast.error(error.message)

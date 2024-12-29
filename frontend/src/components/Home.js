@@ -1,12 +1,12 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import AntiRagging from "./AntiRagging";
 import FAQ from './FAQ'
 
-const Home = ({isAuthenticated,setIsAuthenticated ,name , setuserName , complaint , setComplaint,userRole}) => {
+const Home = ({isAuthenticated,setIsAuthenticated ,name , setuserName , complaint , setComplaint,userRole,setUserRole}) => {
   return (
     <div>
       {/* Navbar */}

@@ -1,19 +1,33 @@
 
 
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaUser, FaSignOutAlt, FaClipboardList, FaChalkboardTeacher, FaSchool } from "react-icons/fa"; 
 import { Link } from "react-router-dom"; 
 import { useNavigate } from "react-router-dom";
 import InstructorDashboard from "../components/InstructorDashboard"
 
-const Dashboard = ({isAuthenticated,setIsAuthenticated,userRole,setUserRole,name,setUsername,complaint}) => {
+const Dashboard = ({isAuthenticated,setIsAuthenticated,name,setuserName,userRole,setUserRole,complaint}) => {
   const navigate = useNavigate();
   const handleLogout = () => {
+    localStorage.removeItem("user");
     localStorage.removeItem("authToken")
     setIsAuthenticated(false);
     navigate("/");
   };
+  useEffect(()=>{
+    const storedUser = localStorage.getItem("user");
+    const obj = JSON.parse(storedUser);
+    setUserRole(obj.userRole);
+    setuserName({
+      firstName:obj.firstName,
+      [userRole === "Student" ? "studentId" : "instructorId"]: obj.userRole === "Student" ? "studentId" : "instructorId"
+
+    });
+    console.log(name);
+    console.log(userRole);
+  },[])
   return (
+
     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 min-h-screen text-white py-12">
       <div className="container mx-auto max-w-4xl text-center space-y-8">
         {/* Dashboard Header */}
