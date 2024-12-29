@@ -8,7 +8,7 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,us
   return (
     <div>
       <div
-        className="relative bg-cover bg-center h-screen flex lg:flex-row flex-col items-center px-6 md:px-12 bg-gradient-to-r from-gray-800 via-black to-gray-900 overflow-hidden"
+        className="relative bg-cover bg-center pb-6 h-fit flex lg:flex-row flex-col items-center px-6 md:px-12 bg-gradient-to-r from-gray-800 via-black to-gray-900 overflow-hidden"
         style={{ backgroundAttachment: "fixed" }}
       >
         {/* Left Side*/}
