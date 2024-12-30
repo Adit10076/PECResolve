@@ -1,8 +1,6 @@
 
 import { Link } from 'react-router-dom'
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from "react";
 
 const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,userRole}) => {
   return (
@@ -68,11 +66,10 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,us
                   };
 
                   const complaintClass =
-                    complaintTypeColors[comp.complaintType] || "border-gray-500 bg-gray-700/50";
+                    complaintTypeColors[comp.complaintType];
 
                   return (
                     <div
-                      key={comp.id}
                       className={`p-4 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl border-l-4 ${complaintClass}`}
                     >
                       <h3 className="text-2xl font-semibold mb-2 text-green-200">
@@ -97,7 +94,6 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,us
 
 
       </div>
-      <ToastContainer />
     </div>
   );
 };

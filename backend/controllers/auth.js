@@ -78,6 +78,12 @@ exports.login = async(req,res)=>{
                 message:"User is not registered"
             })
         }
+        if(userRole!==user.userRole){
+            return res.json({
+                success:false,
+                message:`You need to be a ${userRole} to access ${userRole} section`
+            })
+        }
         const payload={
             firstName:user.firstName,
             id:user._id,
