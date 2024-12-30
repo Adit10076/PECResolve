@@ -29,8 +29,9 @@ const Dashboard = ({isAuthenticated,setIsAuthenticated,name,setuserName,userRole
   },[])
   return (
 
-    <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 min-h-screen text-white py-12">
-      <Header/>
+   <div>
+    <Header/>
+     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 min-h-screen text-white py-12">
       <div className="container mx-auto max-w-4xl text-center space-y-8">
         {/* Dashboard Header */}
         <h2 className="text-4xl font-semibold">Welcome to your Dashboard</h2>
@@ -76,6 +77,7 @@ const Dashboard = ({isAuthenticated,setIsAuthenticated,name,setuserName,userRole
         </div>
       </div>
     </div>
+   </div>
   );
 };
 
