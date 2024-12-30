@@ -41,11 +41,11 @@ const ViewGrievances = ({ name, setuserName, complaint, setComplaint , userRole,
     fetchComplaints();
   }, []);
   return (
-    <div className="bg-gray-900 min-h-screen py-12">
+    <div className="bg-gray-900 min-h-screen">
       <div>
         <Header/>
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 py-12">
         <h2 className="text-4xl font-semibold text-white mb-8">View Grievances</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {complaint.length > 0 ? (

@@ -50,7 +50,6 @@ const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
 
     return (
         <div>
-            <Header/>
             <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md mx-auto">
             <h2 className="text-3xl font-semibold text-center text-white mb-6">Report a Lost or Found Item</h2>
 

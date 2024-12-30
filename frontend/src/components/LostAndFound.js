@@ -22,9 +22,9 @@ const LostAndFound = ({items,setItems,addItem}) => {
     fetchItems();
   }, []); 
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-12">
+    <div className="min-h-screen bg-gray-900 text-white">
       <Header/>
-      <h1 className="text-4xl text-center font-extrabold mb-8">Lost and Found</h1>
+      <h1 className="text-4xl text-center font-extrabold mb-8 py-12">Lost and Found</h1>
       
       {/* Add Lost or Found Item Form */}
       <AddItemForm items={items} setItems={setItems} addItem={addItem} fetchItems={fetchItems} />
