@@ -13,7 +13,8 @@ PECResolve is a centralized digital platform designed to efficiently address and
 ## Tech Stack
 
 - **Frontend**: React.js, Tailwind CSS
-- **More To Be Added**
+- **Backend**:Nodejs , Expressjs
+- **Database**:MongoDB
 
 ## Installation
 
