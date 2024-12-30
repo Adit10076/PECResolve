@@ -5,6 +5,7 @@ import AddItemForm from "./AddItemForm";
 import { useEffect } from "react";
 import axios from "axios";
 import {toast,ToastContainer} from "react-toastify"
+import Header from "./Header"
 
 const LostAndFound = ({items,setItems,addItem}) => {
   const fetchItems = async () => {
@@ -22,6 +23,7 @@ const LostAndFound = ({items,setItems,addItem}) => {
   }, []); 
   return (
     <div className="min-h-screen bg-gray-900 text-white py-12">
+      <Header/>
       <h1 className="text-4xl text-center font-extrabold mb-8">Lost and Found</h1>
       
       {/* Add Lost or Found Item Form */}

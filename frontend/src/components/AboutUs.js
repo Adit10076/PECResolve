@@ -1,11 +1,15 @@
 import React from "react";
 import { FaGlobe, FaUsers, FaRocket } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Header from "./Header"
 
 const AboutUs = () => {
   return (
-    <div className="bg-gradient-to-r from-gray-900 via-black to-gray-800 min-h-screen flex flex-col items-center py-12 text-white">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+    <div>
+      <Header/>
+      <div className="bg-gradient-to-r from-gray-900 via-black to-gray-800 min-h-screen flex flex-col items-center py-12 text-white relative">
+      
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-[8rem]">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 animate-fade-in">
           About Us
         </h1>
@@ -65,6 +69,7 @@ const AboutUs = () => {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 };

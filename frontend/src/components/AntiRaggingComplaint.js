@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaBullhorn, FaPen, FaPaperPlane } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "./Header"
 
 const AntiRaggingComplaint = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,9 @@ const AntiRaggingComplaint = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 min-h-screen flex flex-col items-center py-12 px-6">
+    <div>
+      <Header/>
+      <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 min-h-screen flex flex-col items-center py-12 px-6">
       <ToastContainer />
       <h1 className="text-4xl font-bold text-green-500 mb-6 animate-slide-in">
         <FaBullhorn className="inline-block text-green-400 mr-2" /> Anti-Ragging Complaint
@@ -99,6 +102,7 @@ const AntiRaggingComplaint = () => {
           Submit Complaint
         </button>
       </form>
+    </div>
     </div>
   );
 };

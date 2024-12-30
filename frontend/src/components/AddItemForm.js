@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { ToastContainer,toast } from "react-toastify";
+import Header from "./Header.js"
 
 const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
 
@@ -48,7 +49,9 @@ const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md mx-auto">
+        <div>
+            <Header/>
+            <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md mx-auto">
             <h2 className="text-3xl font-semibold text-center text-white mb-6">Report a Lost or Found Item</h2>
 
             <div className="mb-4">
@@ -112,6 +115,7 @@ const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
                 Report Item
             </button>
         </form>
+        </div>
     );
 };
 

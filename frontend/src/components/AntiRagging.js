@@ -4,10 +4,14 @@ import { FaBullhorn, FaShieldAlt } from "react-icons/fa";
 import { ToastContainer,toast } from "react-toastify";
 import antiRagging from '../images/Anti-Ragging.webp'
 import { Link } from "react-router-dom";
+import Header from './Header'
 
 const AntiRagging = () => {
   return (
     <div className="bg-gradient-to-r from-gray-800 via-gray-900 to-black py-20">
+      <div>
+
+      </div>
       <div className="container mx-auto text-center space-y-10">
         {/* Title Section */}
         <h2 className="text-4xl font-extrabold text-white">

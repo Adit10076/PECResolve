@@ -2,6 +2,7 @@ import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {toast,ToastContainer} from "react-toastify"
+import Header from "./Header"
 
 const ResolveComplaint = () => {
     const complaintId = useParams(); // Returns an object
@@ -93,6 +94,7 @@ const ResolveComplaint = () => {
 
     return (
         <div className="bg-gray-900 min-h-screen text-white py-12">
+            <Header/>
             {complaint ? (
                 <div className="container mx-auto max-w-4xl">
                     <h2 className="text-4xl font-semibold mb-6">Resolve Complaint</h2>

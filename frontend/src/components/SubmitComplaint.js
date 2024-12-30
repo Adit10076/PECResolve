@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Header from "./Header"
 
 const SubmitComplaint = ({ userRole, name, setUserName, complaint, setComplaint, addComplaint, isAuthenticated }) => {
     const [formData, setformData] = useState({
@@ -51,6 +52,7 @@ const SubmitComplaint = ({ userRole, name, setUserName, complaint, setComplaint,
 
     return (
         <div>
+            <Header/>
             {isAuthenticated ? (
                 <>
                     <div className="bg-gradient-to-br from-black via-green-900 to-gray-900 min-h-screen flex justify-center items-center py-12">

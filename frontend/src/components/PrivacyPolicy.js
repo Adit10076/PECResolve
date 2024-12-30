@@ -1,8 +1,11 @@
 import React from "react";
+import Header from "./Header"
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-green-900 text-white p-8 flex items-center justify-center">
+    <div>
+      <Header/>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-green-900 text-white p-8 flex items-center justify-center">
       <div className="max-w-5xl bg-gray-800 bg-opacity-90 rounded-lg shadow-xl p-8 text-center transform hover:scale-105 transition-all duration-500 ease-in-out">
         <h1 className="text-5xl font-bold mb-6 text-green-300 tracking-wider">
           Privacy Policy
@@ -70,6 +73,7 @@ const PrivacyPolicy = () => {
           <p>© {new Date().getFullYear()} PECResolve. All rights reserved.</p>
         </footer>
       </div>
+    </div>
     </div>
   );
 };

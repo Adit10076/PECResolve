@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaClipboardList, FaChalkboardTeacher } from "react-icons/fa";
 import  ResolveComplaint from "../components/ResolveComplaint.js"
 import { useNavigate } from "react-router-dom";
+import Header from './Header.js'
 const InstructorDashboard = ({ complaint }) => {
   // Function to determine instructor type based on instructorId
   const getInstructorType = (instructorId) => {
@@ -47,6 +48,7 @@ const InstructorDashboard = ({ complaint }) => {
 
   return (
     <div className="bg-gradient-to-r from-gray-800 via-black to-gray-900 min-h-screen text-white py-12">
+      <Header/>
       <div className="container mx-auto max-w-4xl text-center space-y-8">
         {/* Dashboard Header */}
         <h2 className="text-4xl font-semibold">Instructor Dashboard</h2>
