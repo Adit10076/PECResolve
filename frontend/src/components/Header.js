@@ -5,7 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";  
 
 const Header = ({ isAuthenticated, setIsAuthenticated }) => {  
-  const [isOpen, setIsOpen] = useState(false); // To handle the mobile menu toggle  
+  const [isOpen, setIsOpen] = useState(false); 
   const navigate = useNavigate();  
 
   function handleLogout() {  
@@ -51,23 +51,6 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
               <span className="absolute bottom-0 left-0 w-0 h-1 bg-greenLight transition-all duration-300 group-hover:w-full"></span>  
             </li>  
           </ul>  
-
-          <div className="flex gap-4">  
-            {isAuthenticated ? (  
-              <button  
-                className="bg-greenLight text-white rounded-md py-2 px-4 hover:bg-green-600 transition duration-300 transform hover:scale-105 text-sm"  
-                onClick={handleLogout}  
-              >  
-                Logout  
-              </button>  
-            ) : (  
-              <Link to="/login">  
-                <button className="bg-greenLight text-white rounded-md py-2 px-4 hover:bg-green-600 transition duration-300 transform hover:scale-105 text-sm">  
-                  Log In / Sign Up  
-                </button>  
-              </Link>  
-            )}  
-          </div>  
         </div>  
       </nav>  
     </div>  
