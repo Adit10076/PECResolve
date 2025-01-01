@@ -18,7 +18,11 @@ const AddItemForm = ({ name, setuserName, items, setItems, addItem,fetchItems}) 
         setformData((prevState) => ({ ...prevState, [name]: value }));
 
     };
-
+    useEffect(()=>{
+        const storedUser = localStorage.getItem("user")
+        const obj = JSON.parse(storedUser);
+        setuserName({ firstName: obj.firstName });
+    },[])
     const requiredBody = {
         title:formData.title,
         description:formData.description,
@@ -42,8 +46,13 @@ const AddItemForm = ({ name, setuserName, items, setItems, addItem,fetchItems}) 
                         firstName:response.data.firstName
                     }
                     fetchItems();
-                    formData.title="";
-                    formData.description="";
+                    setformData({
+                        title: "",
+                        description: "",
+                        type: "lost",
+                        firstName: name.firstName,
+                    });
+                    
                 }
             } catch(error){
                 toast.error(error.message)

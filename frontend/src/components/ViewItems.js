@@ -20,6 +20,7 @@ const ViewItems = ({ name ,setuserName,items,setItems}) => {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/items`);
             if (response.data.success) {
                 setItems(response.data.items);
+                console.log(response.data)
             }
         } catch (error) {
             toast.error(error.message);
@@ -31,7 +32,7 @@ const ViewItems = ({ name ,setuserName,items,setItems}) => {
         setuserName({
           firstName: obj.firstName,
         });
-    });
+    },[]);
     useEffect(() => {
         fetchItems();
 
