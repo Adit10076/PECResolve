@@ -12,6 +12,7 @@ const{getItems}=require("../controllers/getItems.js")
 const {createMessage}=require("../controllers/contact.js")
 const { findComplaintById } = require('../controllers/complaintController.js');
 const{updateComplaint}=require("../controllers/complaintController.js")
+const{deleteItem}=require("../controllers/getItems.js")
 
 // Define API routes
 router.get("/complaints", getComplaints);          
@@ -23,7 +24,8 @@ router.get("/items",getItems);
 router.post("/contact",createMessage);
 router.delete("/delete/:id",deleteComplaint)
 router.get('/complaints/:id', findComplaintById);
-router.put('/complaints/:id', updateComplaint)
+router.put('/complaints/:id', updateComplaint);
+router.delete("/deleteItem/:id",deleteItem);
 
 
 module.exports = router;

@@ -14,3 +14,20 @@ exports.getItems = async(req,res)=>{
         })
     }
 }
+
+exports.deleteItem = async(req,res)=>{
+    try{
+        const {id} = req.params;
+        await Lost.findByIdAndDelete({_id:id});
+        res.status(200).json({
+            success:true,
+            message:"Item deleted Successfully"
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            success:false,
+            message:error.message
+        })
+    }
+}

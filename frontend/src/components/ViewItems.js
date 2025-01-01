@@ -7,7 +7,7 @@ const ViewItems = ({ name ,setuserName,items,setItems}) => {
     const handleSubmit = async (id) => {
         try {
           //call the api
-          await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/delete/${id}`);
+          await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/deleteItem/${id}`);
           setItems(items.filter(item => item._id !== id));
           toast.success("Item Removed Successfully")
         }
@@ -52,7 +52,7 @@ const ViewItems = ({ name ,setuserName,items,setItems}) => {
                                     <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
                                     <p className="text-gray-400 mb-4">{item.description}</p>
                                     <p className="text-green-500 font-bold mb-4">{item.complaintType}</p>
-                                    <button onClick={() => handleSubmit(item._id)} className="text-green-500 hover:underline">Item Found</button>
+                                    <button onClick={() => handleSubmit(item._id)} className="text-red-500 hover:underline">Delete Item</button>
                                 </div>
                             </> : ""
                         ))
