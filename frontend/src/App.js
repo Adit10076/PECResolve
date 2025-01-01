@@ -14,6 +14,7 @@ import JoinCampaign from "./components/JoinCampaign.js";
 import ViewGrievances from "./components/ViewGrievances.js";
 import PrivacyPolicy from "./components/PrivacyPolicy.js";
 import ResolveComplaint from "./components/ResolveComplaint.js";
+import ViewItems from "./components/ViewItems.js";
 import {toast} from "react-toastify";
 import axios from "axios";
 
@@ -43,8 +44,6 @@ const App = () => {
   };
 
   const [complaint, setComplaint] = useState([
-    // { id: 1, title: "Complaint about server downtime", description: "The server was down for hours yesterday." },
-    // { id: 2, title: "Complaint about faculty behavior", description: "The professor was rude during the class." },
   ]);
 
   useEffect(() => {
@@ -75,7 +74,7 @@ const App = () => {
         <Route path="/" element={<Home isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
           complaint={complaint} setComplaint={setComplaint} userRole={userRole} setUserRole={setUserRole} />} />
         {/* Lost n found route */}
-        <Route path='/lostnfound' element={<LostAndFound items={items} setItems={setItems} addItem={addItem} />} />
+        <Route path='/lostnfound' element={<LostAndFound name={name} setuserName={setuserName} items={items} setItems={setItems} addItem={addItem} />} />
         {/* Login/Signup Page*/}
         <Route path="/login" element={<LoginSignup isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}
           userRole={userRole} setUserRole={setUserRole} />} />
@@ -91,6 +90,7 @@ const App = () => {
         <Route path='/view' element={<ViewGrievances name={name} setuserName={setuserName} complaint={complaint} setComplaint={setComplaint} userRole={userRole} setUserRole={setUserRole} />} />
         <Route path="/resolve-complaint/:complaintId" element={<ResolveComplaint />} />
         <Route path='/privacy' element={<PrivacyPolicy />} />
+        <Route path ='/lostnfound/view' element={<ViewItems name={name} setuserName={setuserName} items={items} setItems={setItems}/>}/>
       </Routes>
     </Router>
   );

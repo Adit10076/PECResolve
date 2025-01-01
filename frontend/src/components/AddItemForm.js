@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { ToastContainer,toast } from "react-toastify";
 import Header from "./Header.js"
 
-const AddItemForm = ({ items, setItems, addItem,fetchItems}) => { //for the list
+const AddItemForm = ({ name, setuserName, items, setItems, addItem,fetchItems}) => { //for the list
 
     //for the form 
     const [formData , setformData] = useState({
         title:"",
         description:"",
-        type:"lost"
+        type:"lost",
+        firstName: name.firstName
     })
     const handleChange = (e) => {
         const { name , value } = e.target;

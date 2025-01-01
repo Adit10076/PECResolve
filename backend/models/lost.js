@@ -12,6 +12,10 @@ const lostSchema = new mongoose.Schema({
     type:{
         type:String,
         required:true
+    },
+    firstName:{
+        type:String,
+
     }
 })
 
