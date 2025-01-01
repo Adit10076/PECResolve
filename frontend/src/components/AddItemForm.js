@@ -22,7 +22,8 @@ const AddItemForm = ({ name, setuserName, items, setItems, addItem,fetchItems}) 
     const requiredBody = {
         title:formData.title,
         description:formData.description,
-        type:formData.type
+        type:formData.type,
+        firstName:formData.firstName
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -37,7 +38,8 @@ const AddItemForm = ({ name, setuserName, items, setItems, addItem,fetchItems}) 
                     const item={
                         title: response.data.title,
                         description:response.data.description,
-                        type:response.data.type
+                        type:response.data.type,
+                        firstName:response.data.firstName
                     }
                     fetchItems();
                     formData.title="";
