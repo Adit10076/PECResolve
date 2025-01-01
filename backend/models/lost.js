@@ -15,7 +15,7 @@ const lostSchema = new mongoose.Schema({
     },
     firstName:{
         type:String,
-
+        required:true
     }
 })
 

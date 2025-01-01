@@ -2,8 +2,8 @@ const Lost = require("../models/lost.js")
 
 exports.lostController = async(req,res)=>{
     try {
-        const {title,description,type}=req.body;
-        const item = await Lost.create({title,description,type});
+        const {title,description,type,firstName}=req.body;
+        const item = await Lost.create({title,description,type,firstName});
         return res.status(200).json({
             success:true,
             data:item,
