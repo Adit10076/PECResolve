@@ -58,10 +58,7 @@ const ViewGrievances = ({ name, setuserName, complaint, setComplaint , userRole,
                   <button onClick={() => handleSubmit(grievance._id)} className="text-red-500 hover:underline">Delete Complaint</button><br></br><br></br>
                   
                 </div>
-              </> : 
-              <div className='flex items-center justify- font-semibold text-white'>
-                
-              </div>
+              </> : ""
             ))
           ) : (
             <p className="text-white">No grievances to display</p>
