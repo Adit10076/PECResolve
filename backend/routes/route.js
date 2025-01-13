@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 const {
     getComplaints,
     createComplaints,
@@ -26,6 +27,5 @@ router.delete("/delete/:id",deleteComplaint)
 router.get('/complaints/:id', findComplaintById);
 router.put('/complaints/:id', updateComplaint);
 router.delete("/deleteItem/:id",deleteItem);
-
 
 module.exports = router;

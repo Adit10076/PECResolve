@@ -39,7 +39,7 @@ const LostAndFound = ({ name, setuserName ,items, setItems, addItem }) => {
         ))}
       </div>
       {/* View your items */}
-      <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48 self-center">
+      <div className="bg-gray-700 p-6 rounded-md shadow-lg w-48 self-center mt-10 mb-10">
         <FaClipboardList className="text-3xl mb-4" />
         <button onClick={() => navigate("/lostnfound/view")}>Handle Your Items</button>
       </div>

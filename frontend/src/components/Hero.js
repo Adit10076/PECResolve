@@ -36,6 +36,7 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,us
             </Link>
               </>:<button></button>
             }
+
           </div>
           <div className="mt-10 text-white opacity-70">
             <p className="text-lg text-animation">

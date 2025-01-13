@@ -15,8 +15,6 @@ import ViewGrievances from "./components/ViewGrievances.js";
 import PrivacyPolicy from "./components/PrivacyPolicy.js";
 import ResolveComplaint from "./components/ResolveComplaint.js";
 import ViewItems from "./components/ViewItems.js";
-import {toast} from "react-toastify";
-import axios from "axios";
 
 const App = () => {
   const [userRole, setUserRole] = useState("Student");
@@ -67,6 +65,7 @@ const App = () => {
   function addComplaint(newComplaint) {
     setComplaint([...complaint, newComplaint]);
   }
+
   return (
     <Router>
       <Routes>

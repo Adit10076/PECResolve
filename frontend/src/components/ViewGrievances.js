@@ -55,9 +55,13 @@ const ViewGrievances = ({ name, setuserName, complaint, setComplaint , userRole,
                   <h3 className="text-2xl font-semibold mb-4">{grievance.title}</h3>
                   <p className="text-gray-400 mb-4">{grievance.description}</p>
                   <p className="text-green-500 font-bold mb-4">{grievance.complaintType}</p>
-                  <button onClick={() => handleSubmit(grievance._id)} className="text-red-500 hover:underline">Delete Complaint</button>
+                  <button onClick={() => handleSubmit(grievance._id)} className="text-red-500 hover:underline">Delete Complaint</button><br></br><br></br>
+                  
                 </div>
-              </> : ""
+              </> : 
+              <div className='flex items-center justify- font-semibold text-white'>
+                
+              </div>
             ))
           ) : (
             <p className="text-white">No grievances to display</p>

@@ -45,7 +45,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-4 opacity-80">
-          <p className="text-sm">© 2024 PECResolve. All Rights Reserved.</p>
+          <p className="text-sm">{`© ${new Date().getFullYear()} PECResolve. All Rights Reserved.`}</p>
         </div>
       </div>
     </div>
