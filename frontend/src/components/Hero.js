@@ -4,21 +4,22 @@ import React, { useEffect } from "react";
 
 const Hero = ({ isAuthenticated, complaint,userRole,setUserRole,name,setuserName}) => {
   useEffect(()=>{
-    const storedUser = localStorage.getItem("user");
-    const instructorId = localStorage.getItem('instructorId');
-    const obj = JSON.parse(storedUser);
-
-    setUserRole(obj.userRole);
-    setuserName({
-      firstName: obj.firstName,
-      [userRole==="Student"?"studentId":"instructorId"]:obj.studentId?obj.studentId:instructorId,
-    });
-  },[])
+    if(isAuthenticated){
+      const storedUser = localStorage.getItem("user");
+      const instructorId = localStorage.getItem('instructorId');
+      const obj = JSON.parse(storedUser);
+  
+      setUserRole(obj.userRole);
+      setuserName({
+        firstName: obj.firstName,
+        [userRole==="Student"?"studentId":"instructorId"]:obj.studentId?obj.studentId:instructorId,
+      });
+    }
+  },[isAuthenticated, userRole, name])
   return (
     <div>
       <div
         className="relative pt-4 bg-cover bg-center pb-6 h-fit flex lg:flex-row flex-col items-center px-6 md:px-12 bg-gradient-to-r from-gray-800 via-black to-gray-900 overflow-hidden"
-
       >
         {/* Left Side*/}
         <div className="flex flex-col justify-center items-start text-left text-white space-y-8 w-full md:w-2/3 lg:w-3/5 z-10">
