@@ -32,8 +32,7 @@ exports.signup = async (req, res) => {
         }
 
         // Check if user already exists (by studentId or instructorId based on role)
-        const userId = userRole === "Student" ? studentId : instructorId;
-        const isExists = await User.findOne({ userId });
+        const isExists = await User.findOne({ firstName });
         if (isExists) {
             return res.status(400).json({
                 success: false,
