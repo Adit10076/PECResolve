@@ -102,6 +102,7 @@ const ResolveComplaint = ({ name, setuserName }) => {
                     { resolved: true, resolvedBy: userId }
                 );
                 setComplaint(response.data);
+                setShowButton(false)
             } catch (error) {
                 console.log("Error updating complaint status", error.message);
             }
