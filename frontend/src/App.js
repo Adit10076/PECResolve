@@ -15,6 +15,7 @@ import ViewGrievances from "./components/ViewGrievances.js";
 import PrivacyPolicy from "./components/PrivacyPolicy.js";
 import ResolveComplaint from "./components/ResolveComplaint.js";
 import ViewItems from "./components/ViewItems.js";
+import ViewBadge from "./components/ViewBadge.js";
 
 const App = () => {
   const [userRole, setUserRole] = useState("Student");
@@ -87,9 +88,10 @@ const App = () => {
         <Route path='/complaint' element={<AntiRaggingComplaint />} />
         <Route path='/join' element={<JoinCampaign />} />
         <Route path='/view' element={<ViewGrievances name={name} setuserName={setuserName} complaint={complaint} setComplaint={setComplaint} userRole={userRole} setUserRole={setUserRole} />} />
-        <Route path="/resolve-complaint/:complaintId" element={<ResolveComplaint />} />
+        <Route path="/resolve-complaint/:complaintId" element={<ResolveComplaint name={name} setuserName={setuserName} />} />
         <Route path='/privacy' element={<PrivacyPolicy />} />
         <Route path ='/lostnfound/view' element={<ViewItems name={name} setuserName={setuserName} items={items} setItems={setItems}/>}/>
+        <Route path = '/view-badge' element={<ViewBadge name={name} userRole={userRole} complaint={complaint} setuserName={setuserName} setUserRole={setUserRole}/>}/>
       </Routes>
     </Router>
   );

@@ -51,7 +51,7 @@ const InstructorDashboard = ({ complaint }) => {
       <div className="container mx-auto max-w-4xl text-center space-y-8">
         {/* Dashboard Header */}
         <h2 className="text-4xl font-semibold">Instructor Dashboard</h2>
-        <p className="text-lg">As a ${instructorType} instructor, you can manage complaints raised by students.</p>
+        <p className="text-lg">As a {instructorType} instructor, you can manage complaints raised by students.</p>
 
         {/* Action Buttons */}
         <div className="mt-6 flex justify-center space-x-6">
@@ -67,7 +67,7 @@ const InstructorDashboard = ({ complaint }) => {
                   {/* Modal for Viewing Complaints */}
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
-            <div className="bg-gray-800 p-8 rounded-md w-96 space-y-4">
+            <div className="bg-gray-800 p-8 rounded-md w-96 space-y-4 overflow-y-scroll h-screen">
               <h3 className="text-xl text-white font-semibold">Manage Complaints</h3>
               <p className="text-white mb-4">Here you can view and manage complaints of type: {instructorType}</p>
 

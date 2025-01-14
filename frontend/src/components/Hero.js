@@ -1,8 +1,19 @@
 
 import { Link } from 'react-router-dom'
-import React from "react";
+import React, { useEffect } from "react";
 
-const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,userRole}) => {
+const Hero = ({ isAuthenticated, complaint,userRole,setUserRole,name,setuserName}) => {
+  useEffect(()=>{
+    const storedUser = localStorage.getItem("user");
+    const instructorId = localStorage.getItem('instructorId');
+    const obj = JSON.parse(storedUser);
+
+    setUserRole(obj.userRole);
+    setuserName({
+      firstName: obj.firstName,
+      [userRole==="Student"?"studentId":"instructorId"]:obj.studentId?obj.studentId:instructorId,
+    });
+  },[])
   return (
     <div>
       <div
@@ -34,7 +45,11 @@ const Hero = ({ isAuthenticated, setIsAuthenticated, complaint, setComplaint ,us
                 Submit a Complaint
               </button>
             </Link>
-              </>:<button></button>
+              </>:<Link to="/view-badge">
+              <button className="bg-lightBlue text-white rounded-lg py-3 px-8 hover:bg-blue-600 transition-all duration-300 text-lg font-semibold transform hover:scale-105">
+                View Progress
+              </button>
+            </Link>
             }
 
           </div>

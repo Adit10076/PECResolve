@@ -13,7 +13,7 @@ const Home = ({isAuthenticated,setIsAuthenticated ,name , setuserName , complain
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} name={name} setuserName={setuserName}/>
 
       {/* Hero Section */}
-      <Hero isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} complaint={complaint} setComplaint={setComplaint} userRole={userRole}/>
+      <Hero isAuthenticated={isAuthenticated} complaint={complaint} userRole={userRole} setUserRole={setUserRole} name={name} setuserName={setuserName}/>
 
       {/* Anti Ragging  */}
 
