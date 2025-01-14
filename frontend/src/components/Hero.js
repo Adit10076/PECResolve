@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom'
 import React, { useEffect } from "react";
 
 const Hero = ({ isAuthenticated, complaint,userRole,setUserRole,name,setuserName}) => {
-  useEffect(()=>{
-    if(isAuthenticated){
+  useEffect(() => {
+    if (isAuthenticated) {
       const storedUser = localStorage.getItem("user");
-      const instructorId = localStorage.getItem('instructorId');
-      const obj = JSON.parse(storedUser);
-  
-      setUserRole(obj.userRole);
-      setuserName({
-        firstName: obj.firstName,
-        [userRole==="Student"?"studentId":"instructorId"]:obj.studentId?obj.studentId:instructorId,
-      });
+      if (storedUser) {
+        const userData = JSON.parse(storedUser);
+        const role = userData.userRole || "";
+        setUserRole(role); // Update the `userRole` state
+      }
     }
-  },[isAuthenticated, userRole, name])
+  }, [isAuthenticated, setUserRole]);
   return (
     <div>
       <div
