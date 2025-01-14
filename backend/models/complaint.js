@@ -22,6 +22,15 @@ const complaintSchema = new mongoose.Schema({
     },
     deadlineDate:{
         type:Date,
-    }
+    },
+    resolvedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    resolved: {
+        type: Boolean,
+        default: false,
+    },
+
 });
 module.exports = mongoose.model("Complaint",complaintSchema);

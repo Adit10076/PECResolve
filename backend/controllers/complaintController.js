@@ -1,4 +1,5 @@
 const Complaint = require("../models/complaint.js")
+const User = require("../models/auth.js")
 
 exports.getComplaints = async(req,res)=>{
     try{
@@ -22,6 +23,13 @@ exports.createComplaints = async(req,res)=>{
     try{
         const{title,description,complaintType,firstName} = req.body;
         const response = await Complaint.create({title,description,complaintType,firstName});
+        //add this complaint in user section
+        const complaintId = response._id;
+        const user  = await User.findOneAndUpdate({firstName},{
+            $push:{
+                complaints:complaintId
+            }
+        },{new:true})
         res.status(200).json({
             success:true,
             data:response
@@ -79,12 +87,16 @@ exports.findComplaintById = async (req, res) => {
 
 exports.updateComplaint = async(req,res)=>{
     const { id } = req.params;
-    const { deadlineDate } = req.body;
+    const { deadlineDate , resolved , resolvedBy } = req.body;
 
     try {
+        const updateData = { };
+        if(deadlineDate!==undefined) updateData.deadlineDate=deadlineDate;
+        if (resolved !== undefined) updateData.resolved = resolved;
+        if (resolvedBy !== undefined) updateData.resolvedBy = resolvedBy;
         const complaint = await Complaint.findByIdAndUpdate(
             id,
-            { deadlineDate }, 
+            updateData, 
             { new: true }
         );
 
