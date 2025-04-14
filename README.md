@@ -21,3 +21,5 @@ PECResolve is a centralized digital platform designed to efficiently address and
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/PECResolve.git
+2. Install all dependencies
+3. Run 
